@@ -1,0 +1,8 @@
+ReadWriteOnce	ek hi pod read/write kare ✔️
+ReadOnlyMany	multiple pods read
+ReadWriteMany	multiple pods read/write
+
+mongodb ko stateful rkhne ka fayda -> 
+***) kyoki restart ke baad bhi data ek hi pod me save esa or deployment use hota 
+hai steless ke liye jese node js , api mtlb jinka pod har restart pe change hota hai 
+ hai real difference

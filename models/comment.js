@@ -15,6 +15,10 @@ const commentschema = new Schema({
         type:Schema.Types.ObjectId,
         ref:"user"
     },
+    profileimageurl:{
+        type:String,
+        default:"/images/userimage.jpg",
+    },
 
 },
 {timestamps:true});

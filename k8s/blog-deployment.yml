@@ -13,18 +13,27 @@ spec:
         app: blog-app
     spec:
       containers:
-      - name: blog-app
-        image: sahilsharma20/node-blog01:latest
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "250m"
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: 8001
-        env:
-        - name: MONGO_URL
-          value: "mongodb://mongodb-service:27017/blogdb"
+        - name: blog-app
+          image: sahilsharma20/blog-web:02
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8001
+          env:
+            - name: MONGO_URL
+              value: "mongodb://mongodb-service:27017/blogdb"
 
+          volumeMounts: # photos ke liye volume mount
+            - name: uploads-storage
+              mountPath: /app/public/uploads
+
+          # photos ke liye volume claim
+      volumes:
+        - name: uploads-storage
+          persistentVolumeClaim:
+            claimName: uploads-pvc

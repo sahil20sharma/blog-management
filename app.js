@@ -10,11 +10,19 @@ const mongoose = require("mongoose");
 
 const cookieparser = require("cookie-parser");
 const{checkforauthenticationcookie}= require("./middleware/authentication");
+
+
+
 const Blog = require("./models/blog");
 
 
 const PORT = process.env.PORT||8001;
 const app = express();
+
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
 
 /*mongoose.connect("mongodb://localhost:27017/blogify")*/
 mongoose.connect(process.env.MONGO_URL)
@@ -27,7 +35,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(cookieparser());
 
 
-
+app.use(express.static(path.resolve("./public")));
 app.use(checkforauthenticationcookie("token"));
 
 app.set("view engine","ejs");
@@ -35,6 +43,7 @@ app.set("views", path.resolve("./views"));
 
 app.use("/user",userroute);
 app.use("/blog",blogroute);
+
 
 app.get("/", async (req,res)=>{
     const allblogs = await Blog.find({});
@@ -44,7 +53,7 @@ app.get("/", async (req,res)=>{
     });
 });
 
-app.use(express.static(path.resolve("./public")));
+
 
 app.listen(PORT,'0.0.0.0',()=>{
     console.log("server started at localhost 8001");

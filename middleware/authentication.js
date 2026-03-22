@@ -8,8 +8,10 @@ function checkforauthenticationcookie(cookiename){
     
     try{
         const userpayload=validatetoken(tokencookievalue);
+        console.log("USER PAYLOAD:", userpayload);
         req.user=userpayload;
     }catch(error){
+        console.log("TOKEN ERROR:", error);
 
     }
     return next();

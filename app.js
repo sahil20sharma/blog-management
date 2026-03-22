@@ -29,7 +29,7 @@ app.use(cookieparser());
 
 
 app.use(checkforauthenticationcookie("token"));
-app.use(express.static(path.resolve("./public")));
+
 app.set("view engine","ejs");
 app.set("views", path.resolve("./views"));
 
@@ -43,6 +43,8 @@ app.get("/", async (req,res)=>{
         blogs:allblogs,
     });
 });
+
+app.use(express.static(path.resolve("./public")));
 
 app.listen(PORT,'0.0.0.0',()=>{
     console.log("server started at localhost 8001");

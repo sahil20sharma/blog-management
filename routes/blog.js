@@ -37,7 +37,7 @@ router.post("/",upload.single("coverimage"),async(req,res)=>{
     });
     console.log(req.body);
     console.log(req.file);
-    return res.redirect("/"); // home page redirect
+    return res.redirect(`/blog/${blog._id}`); // home page redirect
   }); 
 
    
@@ -60,7 +60,7 @@ router.post("/",upload.single("coverimage"),async(req,res)=>{
       blogid:req.params.blogid,
       createdby:req.user._id,
     });
-    return res.redirect(`/blog/${req.params.id}`);
+    return res.redirect(`/blog/${req.params.blogid}`);
   });
 
   module.exports = router;

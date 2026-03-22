@@ -17,7 +17,7 @@ router.post("/signup",async (req,res)=>{
         email,
         password,
     });
-    return res.redirect("home");
+    return res.redirect("/");
 });
 router.post("/signin",async (req,res)=>{
     const{email,password} = req.body;

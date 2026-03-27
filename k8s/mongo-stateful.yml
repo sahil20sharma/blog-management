@@ -14,7 +14,7 @@
       metadata:
         labels:
           app: mongo #) same as mongo-service.yml spec:selector:app:--
-          #) mtlb vo pod bnaunga jinka label mongo hoga
+          #) mtlb vo pod manage  krunga jinka label mongo hoga
       spec:
         containers:
         - name: blog-mongo

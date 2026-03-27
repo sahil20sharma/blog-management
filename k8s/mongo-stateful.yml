@@ -7,14 +7,14 @@
     selector:
       matchLabels:
         app: mongo  #) same as mongo-service.yml spec:selector:app:- 
-        #) mtlb unn pod ko pakdunga jinka label mongo hoga  
+        #) mtlb unn pod ko pakdunga ya manage krung jinka label mongo hoga  
     serviceName: mongodb-service
     replicas: 1
     template:
       metadata:
         labels:
           app: mongo #) same as mongo-service.yml spec:selector:app:--
-          #) mtlb vo pod naunga jinka label mongo hoga
+          #) mtlb vo pod bnaunga jinka label mongo hoga
       spec:
         containers:
         - name: blog-mongo
